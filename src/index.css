@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.hero-img {
+  background: white;
+  border-radius: 1rem;
+  align-items: center;
+
+  background-image: linear-gradient(
+      45deg,
+      rgba(186, 186, 255, 0.75),
+      rgba(21, 0, 255, 0.75)
+    ),
+    url("./images/HR-rebranding.jpg");
+  background-size: contain;
+}
+.body-hero-img {
+  height: 100%;
+  background: white;
+  border-radius: 1rem;
+  align-items: bottom;
+
+  background-image: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.75),
+      rgba(243, 243, 248, 0.75)
+    ),
+    url("./images/hr_text1.jpg");
+  background-size: cover;
+}
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 1rem 0;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #260de3;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #260de3 transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}

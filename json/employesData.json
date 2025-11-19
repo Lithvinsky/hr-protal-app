@@ -1,0 +1,1062 @@
+{
+  "employees": [
+    {
+      "id": "a1",
+      "name": "Rafal",
+      "surname": "Litwin",
+      "email": "rafal.litwin@example.com",
+      "password": "qwerty123",
+      "age": 37,
+      "job": "HR Manager",
+      "role": "admin",
+      "phone": "+48 123 456 789",
+      "department": "Human Resources",
+      "hireDate": "2020-01-15",
+      "address": "Warsaw, Poland",
+      "daysOfHolidays": 28,
+      "holidays": [
+        {
+          "startDate": "2025-06-15",
+          "endDate": "2025-06-20",
+          "daysUsed": 5,
+          "status": "accepted",
+          "reason": "Summer vacation",
+          "requestedDate": "2025-03-10"
+        },
+        {
+          "startDate": "2025-08-10",
+          "endDate": "2025-08-15",
+          "daysUsed": 5,
+          "status": "accepted",
+          "reason": "Family trip",
+          "requestedDate": "2025-05-20"
+        }
+      ],
+      "onboarding": {
+        "tasks": [
+          {
+            "id": 1,
+            "title": "Complete profile information",
+            "completed": true
+          },
+          {
+            "id": 2,
+            "title": "Review company policies",
+            "completed": true
+          },
+          {
+            "id": 3,
+            "title": "Set up work equipment",
+            "completed": true
+          },
+          {
+            "id": 4,
+            "title": "Attend orientation meeting",
+            "completed": true
+          },
+          {
+            "id": 5,
+            "title": "Complete training modules",
+            "completed": true
+          },
+          {
+            "id": 6,
+            "title": "Meet with team members",
+            "completed": true
+          }
+        ],
+        "completedDate": "2025-11-16T22:04:01.015Z"
+      }
+    },
+    {
+      "id": "e1",
+      "name": "Max",
+      "surname": "Schwarz",
+      "email": "max.schwarz@example.com",
+      "password": "qwerty123",
+      "age": 30,
+      "job": "UI/UX Designer",
+      "role": "user",
+      "phone": "+49 987 654 321",
+      "department": "Design",
+      "hireDate": "2021-03-20",
+      "address": "Berlin, Germany",
+      "daysOfHolidays": 28,
+      "holidays": [
+        {
+          "startDate": "2025-07-01",
+          "endDate": "2025-07-10",
+          "daysUsed": 9,
+          "status": "accepted",
+          "reason": "Beach vacation",
+          "requestedDate": "2025-04-15"
+        },
+        {
+          "startDate": "2025-12-20",
+          "endDate": "2025-12-27",
+          "daysUsed": 7,
+          "status": "requested",
+          "reason": "Christmas holidays",
+          "requestedDate": "2025-10-01"
+        }
+      ],
+      "onboarding": {
+        "tasks": [
+          {
+            "id": 1,
+            "title": "Complete profile information",
+            "completed": true
+          },
+          {
+            "id": 2,
+            "title": "Review company policies",
+            "completed": true
+          },
+          {
+            "id": 3,
+            "title": "Set up work equipment",
+            "completed": true
+          },
+          {
+            "id": 4,
+            "title": "Attend orientation meeting",
+            "completed": true
+          },
+          {
+            "id": 5,
+            "title": "Complete training modules",
+            "completed": true
+          },
+          {
+            "id": 6,
+            "title": "Meet with team members",
+            "completed": true
+          }
+        ],
+        "completedDate": "2025-11-16T21:41:10.099Z"
+      }
+    },
+    {
+      "id": "e2",
+      "name": "Manuel",
+      "surname": "Lorenz",
+      "email": "manuel.lorenz@example.com",
+      "password": "qwerty123",
+      "age": 31,
+      "job": "Full Stack Developer",
+      "role": "user",
+      "phone": "+49 555 123 456",
+      "department": "Engineering",
+      "hireDate": "2019-06-10",
+      "address": "Munich, Germany",
+      "daysOfHolidays": 28,
+      "holidays": [
+        {
+          "startDate": "2025-05-12",
+          "endDate": "2025-05-16",
+          "daysUsed": 4,
+          "status": "accepted",
+          "reason": "Long weekend",
+          "requestedDate": "2025-02-28"
+        },
+        {
+          "startDate": "2025-09-01",
+          "endDate": "2025-09-05",
+          "daysUsed": 4,
+          "status": "declined",
+          "reason": "Personal time",
+          "requestedDate": "2025-07-15",
+          "declineReason": "Project deadline conflict"
+        },
+        {
+          "startDate": "2025-11-22",
+          "endDate": "2025-11-29",
+          "daysUsed": 7,
+          "status": "declined",
+          "reason": "Thanksgiving break",
+          "requestedDate": "2025-09-30",
+          "declineReason": "No reason provided"
+        }
+      ],
+      "onboarding": {
+        "tasks": [
+          {
+            "id": 1,
+            "title": "Complete profile information",
+            "completed": true
+          },
+          {
+            "id": 2,
+            "title": "Review company policies",
+            "completed": true
+          },
+          {
+            "id": 3,
+            "title": "Set up work equipment",
+            "completed": false
+          },
+          {
+            "id": 4,
+            "title": "Attend orientation meeting",
+            "completed": true
+          },
+          {
+            "id": 5,
+            "title": "Complete training modules",
+            "completed": false
+          },
+          {
+            "id": 6,
+            "title": "Meet with team members",
+            "completed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "e3",
+      "name": "Sarah",
+      "surname": "Johnson",
+      "email": "sarah.johnson@example.com",
+      "password": "qwerty123",
+      "age": 29,
+      "job": "Marketing Specialist",
+      "role": "user",
+      "phone": "+1 555 234 567",
+      "department": "Marketing",
+      "hireDate": "2022-02-14",
+      "address": "New York, USA",
+      "daysOfHolidays": 28,
+      "holidays": [
+        {
+          "startDate": "2025-06-20",
+          "endDate": "2025-06-25",
+          "daysUsed": 5,
+          "status": "accepted",
+          "reason": "Summer break",
+          "requestedDate": "2025-04-01"
+        }
+      ],
+      "onboarding": {
+        "tasks": [
+          {
+            "id": 1,
+            "title": "Complete profile information",
+            "completed": true
+          },
+          {
+            "id": 2,
+            "title": "Review company policies",
+            "completed": false
+          },
+          {
+            "id": 3,
+            "title": "Set up work equipment",
+            "completed": true
+          },
+          {
+            "id": 4,
+            "title": "Attend orientation meeting",
+            "completed": true
+          },
+          {
+            "id": 5,
+            "title": "Complete training modules",
+            "completed": true
+          },
+          {
+            "id": 6,
+            "title": "Meet with team members",
+            "completed": true
+          }
+        ],
+        "completedDate": "2022-03-15T10:30:00.000Z"
+      }
+    },
+    {
+      "id": "e4",
+      "name": "Ester",
+      "surname": "Loco",
+      "email": "ester.loco@example.com",
+      "password": "qwerty123",
+      "age": 34,
+      "job": "Backend Developer",
+      "role": "user",
+      "phone": "+34 912 345 678",
+      "department": "Engineering",
+      "hireDate": "2020-09-01",
+      "address": "Madrid, Spain",
+      "daysOfHolidays": 28,
+      "holidays": [
+        {
+          "startDate": "2025-07-15",
+          "endDate": "2025-07-22",
+          "daysUsed": 7,
+          "status": "requested",
+          "reason": "Summer vacation",
+          "requestedDate": "2025-05-10"
+        },
+        {
+          "startDate": "2025-10-10",
+          "endDate": "2025-10-12",
+          "daysUsed": 2,
+          "status": "declined",
+          "reason": "Personal appointment",
+          "requestedDate": "2025-08-20",
+          "declineReason": "Team meeting scheduled"
+        },
+        {
+          "startDate": "2025-11-18",
+          "endDate": "2025-11-21",
+          "daysUsed": "1",
+          "status": "accepted"
+        },
+        {
+          "startDate": "2025-11-21",
+          "endDate": "2025-11-30",
+          "daysUsed": "5",
+          "status": "accepted"
+        }
+      ],
+      "onboarding": {
+        "tasks": [
+          {
+            "id": 1,
+            "title": "Complete profile information",
+            "completed": true
+          },
+          {
+            "id": 2,
+            "title": "Review company policies",
+            "completed": true
+          },
+          {
+            "id": 3,
+            "title": "Set up work equipment",
+            "completed": true
+          },
+          {
+            "id": 4,
+            "title": "Attend orientation meeting",
+            "completed": true
+          },
+          {
+            "id": 5,
+            "title": "Complete training modules",
+            "completed": true
+          },
+          {
+            "id": 6,
+            "title": "Meet with team members",
+            "completed": true
+          }
+        ],
+        "completedDate": "2020-09-20T14:15:00.000Z"
+      }
+    },
+    {
+      "id": "e5",
+      "name": "Jane",
+      "surname": "Doe",
+      "email": "jane.doe@example.com",
+      "password": "qwerty123",
+      "age": 33,
+      "job": "Sales Manager",
+      "role": "user",
+      "phone": "+1 555 345 678",
+      "department": "Sales",
+      "hireDate": "2018-11-05",
+      "address": "Los Angeles, USA",
+      "daysOfHolidays": 28,
+      "holidays": [
+        {
+          "startDate": "2025-08-05",
+          "endDate": "2025-08-12",
+          "daysUsed": 7,
+          "status": "accepted",
+          "reason": "Family vacation",
+          "requestedDate": "2025-05-15"
+        },
+        {
+          "startDate": "2025-12-15",
+          "endDate": "2025-12-20",
+          "daysUsed": 5,
+          "status": "declined",
+          "reason": "Holiday season",
+          "requestedDate": "2025-10-05",
+          "declineReason": "No reason provided"
+        }
+      ],
+      "onboarding": {
+        "tasks": [
+          {
+            "id": 1,
+            "title": "Complete profile information",
+            "completed": true
+          },
+          {
+            "id": 2,
+            "title": "Review company policies",
+            "completed": true
+          },
+          {
+            "id": 3,
+            "title": "Set up work equipment",
+            "completed": false
+          },
+          {
+            "id": 4,
+            "title": "Attend orientation meeting",
+            "completed": false
+          },
+          {
+            "id": 5,
+            "title": "Complete training modules",
+            "completed": true
+          },
+          {
+            "id": 6,
+            "title": "Meet with team members",
+            "completed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "e6",
+      "name": "Michael",
+      "surname": "Chen",
+      "email": "michael.chen@example.com",
+      "password": "qwerty123",
+      "age": 28,
+      "job": "Data Analyst",
+      "role": "user",
+      "phone": "+86 138 0013 8000",
+      "department": "Analytics",
+      "hireDate": "2022-07-18",
+      "address": "Shanghai, China",
+      "daysOfHolidays": 28,
+      "holidays": [
+        {
+          "startDate": "2025-05-20",
+          "endDate": "2025-05-23",
+          "daysUsed": 3,
+          "status": "accepted",
+          "reason": "Personal time",
+          "requestedDate": "2025-03-15"
+        },
+        {
+          "startDate": "2025-11-10",
+          "endDate": "2025-11-15",
+          "daysUsed": 5,
+          "status": "requested",
+          "reason": "Autumn break",
+          "requestedDate": "2025-09-01"
+        }
+      ],
+      "onboarding": {
+        "tasks": [
+          {
+            "id": 1,
+            "title": "Complete profile information",
+            "completed": true
+          },
+          {
+            "id": 2,
+            "title": "Review company policies",
+            "completed": true
+          },
+          {
+            "id": 3,
+            "title": "Set up work equipment",
+            "completed": true
+          },
+          {
+            "id": 4,
+            "title": "Attend orientation meeting",
+            "completed": true
+          },
+          {
+            "id": 5,
+            "title": "Complete training modules",
+            "completed": false
+          },
+          {
+            "id": 6,
+            "title": "Meet with team members",
+            "completed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "e7",
+      "name": "Emma",
+      "surname": "Williams",
+      "email": "emma.williams@example.com",
+      "password": "qwerty123",
+      "age": 32,
+      "job": "Product Manager",
+      "role": "user",
+      "phone": "+44 20 7946 0958",
+      "department": "Product",
+      "hireDate": "2021-01-10",
+      "address": "London, UK",
+      "daysOfHolidays": 28,
+      "holidays": [
+        {
+          "startDate": "2025-06-10",
+          "endDate": "2025-06-17",
+          "daysUsed": 7,
+          "status": "accepted",
+          "reason": "Summer holiday",
+          "requestedDate": "2025-03-20"
+        },
+        {
+          "startDate": "2025-09-15",
+          "endDate": "2025-09-18",
+          "daysUsed": 3,
+          "status": "declined",
+          "reason": "Weekend extension",
+          "requestedDate": "2025-07-10",
+          "declineReason": "Product launch scheduled"
+        }
+      ],
+      "onboarding": {
+        "tasks": [
+          {
+            "id": 1,
+            "title": "Complete profile information",
+            "completed": true
+          },
+          {
+            "id": 2,
+            "title": "Review company policies",
+            "completed": true
+          },
+          {
+            "id": 3,
+            "title": "Set up work equipment",
+            "completed": true
+          },
+          {
+            "id": 4,
+            "title": "Attend orientation meeting",
+            "completed": true
+          },
+          {
+            "id": 5,
+            "title": "Complete training modules",
+            "completed": true
+          },
+          {
+            "id": 6,
+            "title": "Meet with team members",
+            "completed": true
+          }
+        ],
+        "completedDate": "2017-04-20T09:00:00.000Z"
+      }
+    },
+    {
+      "id": "e8",
+      "name": "David",
+      "surname": "Brown",
+      "email": "david.brown@example.com",
+      "password": "qwerty123",
+      "age": 35,
+      "job": "Senior Developer",
+      "role": "user",
+      "phone": "+1 555 456 789",
+      "department": "Engineering",
+      "hireDate": "2017-04-03",
+      "address": "San Francisco, USA",
+      "daysOfHolidays": 28,
+      "holidays": [
+        {
+          "startDate": "2025-07-25",
+          "endDate": "2025-08-01",
+          "daysUsed": 7,
+          "status": "requested",
+          "reason": "Summer vacation",
+          "requestedDate": "2025-05-25"
+        }
+      ],
+      "onboarding": {
+        "tasks": [
+          {
+            "id": 1,
+            "title": "Complete profile information",
+            "completed": true
+          },
+          {
+            "id": 2,
+            "title": "Review company policies",
+            "completed": false
+          },
+          {
+            "id": 3,
+            "title": "Set up work equipment",
+            "completed": true
+          },
+          {
+            "id": 4,
+            "title": "Attend orientation meeting",
+            "completed": true
+          },
+          {
+            "id": 5,
+            "title": "Complete training modules",
+            "completed": false
+          },
+          {
+            "id": 6,
+            "title": "Meet with team members",
+            "completed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "e9",
+      "name": "Olivia",
+      "surname": "Martinez",
+      "email": "olivia.martinez@example.com",
+      "password": "qwerty123",
+      "age": 27,
+      "job": "UX Designer",
+      "role": "user",
+      "phone": "+34 611 222 333",
+      "department": "Design",
+      "hireDate": "2023-02-28",
+      "address": "Barcelona, Spain",
+      "daysOfHolidays": 28,
+      "holidays": [
+        {
+          "startDate": "2025-05-05",
+          "endDate": "2025-05-09",
+          "daysUsed": 4,
+          "status": "accepted",
+          "reason": "Spring break",
+          "requestedDate": "2025-02-15"
+        },
+        {
+          "startDate": "2025-10-20",
+          "endDate": "2025-10-27",
+          "daysUsed": 7,
+          "status": "requested",
+          "reason": "Autumn vacation",
+          "requestedDate": "2025-08-10"
+        },
+        {
+          "startDate": "2025-12-01",
+          "endDate": "2025-12-05",
+          "daysUsed": 4,
+          "status": "declined",
+          "reason": "Early December break",
+          "requestedDate": "2025-09-20",
+          "declineReason": "Design sprint scheduled"
+        }
+      ],
+      "onboarding": {
+        "tasks": [
+          {
+            "id": 1,
+            "title": "Complete profile information",
+            "completed": true
+          },
+          {
+            "id": 2,
+            "title": "Review company policies",
+            "completed": true
+          },
+          {
+            "id": 3,
+            "title": "Set up work equipment",
+            "completed": true
+          },
+          {
+            "id": 4,
+            "title": "Attend orientation meeting",
+            "completed": false
+          },
+          {
+            "id": 5,
+            "title": "Complete training modules",
+            "completed": true
+          },
+          {
+            "id": 6,
+            "title": "Meet with team members",
+            "completed": false
+          }
+        ],
+        "completedDate": null
+      }
+    },
+    {
+      "id": "e10",
+      "name": "James",
+      "surname": "Taylor",
+      "email": "james.taylor@example.com",
+      "password": "qwerty123",
+      "age": 36,
+      "job": "DevOps Engineer",
+      "role": "user",
+      "phone": "+44 20 7123 4567",
+      "department": "Engineering",
+      "hireDate": "2019-08-12",
+      "address": "Manchester, UK",
+      "daysOfHolidays": 28,
+      "holidays": [],
+      "onboarding": {
+        "tasks": [
+          {
+            "id": 1,
+            "title": "Complete profile information",
+            "completed": true
+          },
+          {
+            "id": 2,
+            "title": "Review company policies",
+            "completed": true
+          },
+          {
+            "id": 3,
+            "title": "Set up work equipment",
+            "completed": true
+          },
+          {
+            "id": 4,
+            "title": "Attend orientation meeting",
+            "completed": true
+          },
+          {
+            "id": 5,
+            "title": "Complete training modules",
+            "completed": true
+          },
+          {
+            "id": 6,
+            "title": "Meet with team members",
+            "completed": true
+          }
+        ],
+        "completedDate": "2019-08-25T11:30:00.000Z"
+      }
+    },
+    {
+      "id": "e11",
+      "name": "Sophia",
+      "surname": "Anderson",
+      "email": "sophia.anderson@example.com",
+      "password": "qwerty123",
+      "age": 30,
+      "job": "Business Analyst",
+      "role": "user",
+      "phone": "+1 555 567 890",
+      "department": "Business Intelligence",
+      "hireDate": "2021-05-22",
+      "address": "Chicago, USA",
+      "daysOfHolidays": 28,
+      "holidays": [
+        {
+          "startDate": "2025-08-20",
+          "endDate": "2025-08-25",
+          "daysUsed": 5,
+          "status": "accepted",
+          "reason": "Late summer break",
+          "requestedDate": "2025-06-01"
+        }
+      ],
+      "onboarding": {
+        "tasks": [
+          {
+            "id": 1,
+            "title": "Complete profile information",
+            "completed": true
+          },
+          {
+            "id": 2,
+            "title": "Review company policies",
+            "completed": true
+          },
+          {
+            "id": 3,
+            "title": "Set up work equipment",
+            "completed": true
+          },
+          {
+            "id": 4,
+            "title": "Attend orientation meeting",
+            "completed": true
+          },
+          {
+            "id": 5,
+            "title": "Complete training modules",
+            "completed": true
+          },
+          {
+            "id": 6,
+            "title": "Meet with team members",
+            "completed": true
+          }
+        ],
+        "completedDate": "2021-06-10T13:45:00.000Z"
+      }
+    },
+    {
+      "id": "e12",
+      "name": "Robert",
+      "surname": "Wilson",
+      "email": "robert.wilson@example.com",
+      "password": "qwerty123",
+      "age": 38,
+      "job": "Project Manager",
+      "role": "user",
+      "phone": "+1 555 678 901",
+      "department": "Project Management",
+      "hireDate": "2016-03-15",
+      "address": "Boston, USA",
+      "daysOfHolidays": 28,
+      "holidays": [
+        {
+          "startDate": "2025-06-25",
+          "endDate": "2025-07-02",
+          "daysUsed": 7,
+          "status": "requested",
+          "reason": "Summer vacation",
+          "requestedDate": "2025-04-10"
+        },
+        {
+          "startDate": "2025-11-05",
+          "endDate": "2025-11-08",
+          "daysUsed": 3,
+          "status": "declined",
+          "reason": "Long weekend",
+          "requestedDate": "2025-08-25",
+          "declineReason": "Client presentation scheduled"
+        }
+      ],
+      "onboarding": {
+        "tasks": [
+          {
+            "id": 1,
+            "title": "Complete profile information",
+            "completed": true
+          },
+          {
+            "id": 2,
+            "title": "Review company policies",
+            "completed": false
+          },
+          {
+            "id": 3,
+            "title": "Set up work equipment",
+            "completed": true
+          },
+          {
+            "id": 4,
+            "title": "Attend orientation meeting",
+            "completed": true
+          },
+          {
+            "id": 5,
+            "title": "Complete training modules",
+            "completed": false
+          },
+          {
+            "id": 6,
+            "title": "Meet with team members",
+            "completed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "e13",
+      "name": "Lisa",
+      "surname": "Garcia",
+      "email": "lisa.garcia@example.com",
+      "password": "qwerty123",
+      "age": 29,
+      "job": "Frontend Developer",
+      "role": "user",
+      "phone": "+1 555 789 012",
+      "department": "Engineering",
+      "hireDate": "2022-09-05",
+      "address": "Austin, USA",
+      "daysOfHolidays": 28,
+      "holidays": [
+        {
+          "startDate": "2025-07-08",
+          "endDate": "2025-07-14",
+          "daysUsed": 6,
+          "status": "accepted",
+          "reason": "Summer holiday",
+          "requestedDate": "2025-04-20"
+        },
+        {
+          "startDate": "2025-12-23",
+          "endDate": "2025-12-31",
+          "daysUsed": 8,
+          "status": "requested",
+          "reason": "Year-end holidays",
+          "requestedDate": "2025-10-15"
+        }
+      ],
+      "onboarding": {
+        "tasks": [
+          {
+            "id": 1,
+            "title": "Complete profile information",
+            "completed": true
+          },
+          {
+            "id": 2,
+            "title": "Review company policies",
+            "completed": true
+          },
+          {
+            "id": 3,
+            "title": "Set up work equipment",
+            "completed": true
+          },
+          {
+            "id": 4,
+            "title": "Attend orientation meeting",
+            "completed": false
+          },
+          {
+            "id": 5,
+            "title": "Complete training modules",
+            "completed": true
+          },
+          {
+            "id": 6,
+            "title": "Meet with team members",
+            "completed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "e14",
+      "name": "Thomas",
+      "surname": "Miller",
+      "email": "thomas.miller@example.com",
+      "password": "qwerty123",
+      "age": 31,
+      "job": "QA Engineer",
+      "role": "user",
+      "phone": "+49 30 1234 5678",
+      "department": "Quality Assurance",
+      "hireDate": "2020-11-20",
+      "address": "Hamburg, Germany",
+      "daysOfHolidays": 28,
+      "holidays": [
+        {
+          "startDate": "2025-05-28",
+          "endDate": "2025-06-02",
+          "daysUsed": 5,
+          "status": "accepted",
+          "reason": "Early summer break",
+          "requestedDate": "2025-03-05"
+        }
+      ],
+      "onboarding": {
+        "tasks": [
+          {
+            "id": 1,
+            "title": "Complete profile information",
+            "completed": true
+          },
+          {
+            "id": 2,
+            "title": "Review company policies",
+            "completed": true
+          },
+          {
+            "id": 3,
+            "title": "Set up work equipment",
+            "completed": true
+          },
+          {
+            "id": 4,
+            "title": "Attend orientation meeting",
+            "completed": false
+          },
+          {
+            "id": 5,
+            "title": "Complete training modules",
+            "completed": true
+          },
+          {
+            "id": 6,
+            "title": "Meet with team members",
+            "completed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "e15",
+      "name": "Anna",
+      "surname": "Kowalska",
+      "email": "anna.kowalska@example.com",
+      "password": "qwerty123",
+      "age": 26,
+      "job": "Junior Developer",
+      "role": "user",
+      "phone": "+48 987 654 321",
+      "department": "Engineering",
+      "hireDate": "2023-06-01",
+      "address": "Krakow, Poland",
+      "daysOfHolidays": 28,
+      "holidays": [
+        {
+          "startDate": "2025-08-18",
+          "endDate": "2025-08-22",
+          "daysUsed": 4,
+          "status": "requested",
+          "reason": "Summer break",
+          "requestedDate": "2025-06-10"
+        }
+      ],
+      "onboarding": {
+        "tasks": [
+          {
+            "id": 1,
+            "title": "Complete profile information",
+            "completed": false
+          },
+          {
+            "id": 2,
+            "title": "Review company policies",
+            "completed": false
+          },
+          {
+            "id": 3,
+            "title": "Set up work equipment",
+            "completed": true
+          },
+          {
+            "id": 4,
+            "title": "Attend orientation meeting",
+            "completed": false
+          },
+          {
+            "id": 5,
+            "title": "Complete training modules",
+            "completed": false
+          },
+          {
+            "id": 6,
+            "title": "Meet with team members",
+            "completed": true
+          }
+        ]
+      }
+    }
+  ]
+}
