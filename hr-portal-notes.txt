@@ -1,0 +1,162 @@
+================================================================================
+HR PORTAL APPLICATION - QUICK REFERENCE GUIDE
+================================================================================
+
+PROGRAM DESCRIPTION
+================================================================================
+The HR Portal is a web application for managing employee information, holiday 
+requests, and administrative tasks. It provides a user-friendly interface for 
+employees to view their profiles, request holidays, and for administrators to 
+manage all employee data and approve/decline holiday requests.
+
+KEY FEATURES:
+- Employee profile management
+- Holiday request system (request, view status, track available days)
+- Admin dashboard with employee statistics
+- Employee directory (view all company employees)
+- Onboarding task management
+- Role-based access control (Admin vs User)
+
+================================================================================
+HOW TO ACCESS THE APPLICATION
+================================================================================
+
+1. START THE APPLICATION:
+   - Navigate to the project directory
+   - Run: npm start
+   - Open browser to: http://localhost:3000
+   - Make sure the backend JSON server is running on port 3000
+
+2. LOGIN PAGE:
+   - The application starts at the login page
+   - You can login using either:
+     * Email address
+     * Username format: name.surname (e.g., rafal.litwin)
+
+================================================================================
+ADMIN ACCESS
+================================================================================
+
+ADMIN CREDENTIALS:
+------------------
+Email:    rafal.litwin@example.com
+Username: rafal.litwin
+Password: qwerty123
+
+ADMIN FEATURES:
+---------------
+- View all employees in the company
+- Access admin dashboard with statistics:
+  * Total employees count
+  * Total holiday requests pending
+  * Total accepted holidays
+  * Number of departments
+- Manage holiday requests (approve/decline)
+- Edit any employee profile
+- View and manage onboarding tasks for all employees
+
+ADMIN NAVIGATION:
+-----------------
+After login, admin users can access:
+- Home: Dashboard with company-wide statistics
+- Profiles: View all employees
+- Profile: View/edit own profile or other employees
+- Holidays: View own holiday requests
+- Admin Holidays: Manage all employee holiday requests (ADMIN ONLY)
+- Book Holiday: Request new holidays
+
+================================================================================
+USER ACCESS
+================================================================================
+
+USER CREDENTIALS (Example):
+----------------------------
+Email:    max.schwarz@example.com
+Username: max.schwarz
+Password: qwerty123
+
+Note: All users in the system use password "qwerty123" by default.
+You can find more user accounts in: json/employesData.json
+
+USER FEATURES:
+--------------
+- View own profile information
+- Edit own profile (limited fields)
+- View available holiday days
+- Request new holidays
+- View holiday request status (requested, accepted, declined)
+- View employee directory (all company employees)
+- Track onboarding tasks progress
+
+USER NAVIGATION:
+---------------
+After login, regular users can access:
+- Home: Personal dashboard with holiday summary
+- Profiles: View all employees in company
+- Profile: View/edit own profile
+- Holidays: View and manage own holiday requests
+- Book Holiday: Submit new holiday requests
+
+================================================================================
+TECHNICAL REQUIREMENTS
+================================================================================
+
+FRONTEND:
+- React application
+- Runs on: http://localhost:3000 (default)
+- Requires: Node.js and npm
+
+BACKEND:
+- JSON Server (for demo purposes)
+- API endpoint: http://localhost:3000/employees
+- Data stored in: json/employesData.json
+
+INSTALLATION:
+1. npm install (to install dependencies)
+2. npm start (to run frontend)
+3. json-server --watch json/employesData.json --port 3000 (to run backend)
+
+================================================================================
+QUICK LOGIN TIPS
+================================================================================
+
+- You can login with email OR username format
+- Username format: firstname.lastname (all lowercase)
+- Example: "rafal.litwin" or "rafal.litwin@example.com" both work
+- Password is case-sensitive
+- Session is stored in browser sessionStorage
+- Logout clears the session
+
+================================================================================
+ROLES EXPLAINED
+================================================================================
+
+ADMIN ROLE:
+- Full access to all features
+- Can edit any employee profile
+- Can approve/decline holiday requests
+- Sees company-wide statistics
+- Has access to "Admin Holidays" page
+
+USER ROLE:
+- Standard employee access
+- Can view all employee profiles (read-only)
+- Can edit own profile only
+- Can request holidays
+- Cannot approve/decline requests
+- No access to admin dashboard
+
+================================================================================
+NOTES
+================================================================================
+
+- The application uses sessionStorage for authentication (clears on browser close)
+- All employee data is stored in JSON format (json/employesData.json)
+- Holiday requests can have status: "requested", "accepted", or "declined"
+- Default holiday days: 28 per year
+- Available days = Total days - Used days (only accepted holidays count)
+
+================================================================================
+END OF NOTES
+================================================================================
+
