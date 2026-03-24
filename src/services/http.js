@@ -1,9 +1,13 @@
 import { QueryClient } from "@tanstack/react-query";
+import { apiUrl } from "../config/api";
 
 export const queryClient = new QueryClient();
 
+const employeesPath = () => apiUrl("/api/employees");
+const employeePath = (id) => apiUrl(`/api/employees/${id}`);
+
 export async function fetchEmployees() {
-  const response = await fetch(`http://localhost:3000/employees`);
+  const response = await fetch(employeesPath());
 
   if (!response.ok) {
     const error = new Error("An error occurred while fetching the events");
@@ -17,7 +21,7 @@ export async function fetchEmployees() {
 }
 
 export async function fetchSingleEmployee({ id, signal }) {
-  const response = await fetch(`http://localhost:3000/employees/${id}`, {
+  const response = await fetch(employeePath(id), {
     signal,
   });
 
@@ -33,7 +37,7 @@ export async function fetchSingleEmployee({ id, signal }) {
 }
 
 export async function requestNewHoliday({ id, holidays }) {
-  const employeeResponse = await fetch(`http://localhost:3000/employees/${id}`);
+  const employeeResponse = await fetch(employeePath(id));
 
   if (!employeeResponse.ok) {
     const error = new Error("An error occurred while fetching employee data");
@@ -50,7 +54,7 @@ export async function requestNewHoliday({ id, holidays }) {
   const newHoliday = { ...holidays, status: holidays.status || "requested" };
   const updatedHolidays = [...currentHolidays, newHoliday];
 
-  const response = await fetch(`http://localhost:3000/employees/${id}`, {
+  const response = await fetch(employeePath(id), {
     method: "PATCH",
     body: JSON.stringify({
       holidays: updatedHolidays,
@@ -78,9 +82,7 @@ export async function updateHolidayStatus({
   status,
   declineReason,
 }) {
-  const employeeResponse = await fetch(
-    `http://localhost:3000/employees/${employeeId}`
-  );
+  const employeeResponse = await fetch(employeePath(employeeId));
 
   if (!employeeResponse.ok) {
     const error = new Error("An error occurred while fetching employee data");
@@ -102,18 +104,15 @@ export async function updateHolidayStatus({
     };
   }
 
-  const response = await fetch(
-    `http://localhost:3000/employees/${employeeId}`,
-    {
-      method: "PATCH",
-      body: JSON.stringify({
-        holidays: holidays,
-      }),
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-      },
-    }
-  );
+  const response = await fetch(employeePath(employeeId), {
+    method: "PATCH",
+    body: JSON.stringify({
+      holidays: holidays,
+    }),
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+    },
+  });
 
   if (!response.ok) {
     const error = new Error("An error occurred while updating holiday status");
@@ -128,16 +127,13 @@ export async function updateHolidayStatus({
 }
 
 export async function updateEmployee({ employeeId, employeeData }) {
-  const response = await fetch(
-    `http://localhost:3000/employees/${employeeId}`,
-    {
-      method: "PATCH",
-      body: JSON.stringify(employeeData),
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-      },
-    }
-  );
+  const response = await fetch(employeePath(employeeId), {
+    method: "PATCH",
+    body: JSON.stringify(employeeData),
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+    },
+  });
 
   if (!response.ok) {
     const error = new Error("An error occurred while updating employee data");

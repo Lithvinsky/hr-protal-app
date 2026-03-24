@@ -10,7 +10,23 @@ dotenv.config();
 connectDB();
 
 const app = express();
-app.use(cors());
+
+const defaultOrigins = ["http://localhost:3000", "http://127.0.0.1:3000"];
+const extraOrigins = (process.env.CLIENT_ORIGIN || "")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+const allowedOrigins = [...defaultOrigins, ...extraOrigins];
+
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) return callback(null, true);
+      callback(null, false);
+    },
+  })
+);
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
