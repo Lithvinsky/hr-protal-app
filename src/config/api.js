@@ -14,3 +14,9 @@ export function apiUrl(path) {
   if (base) return `${base}${segment}`;
   return segment;
 }
+
+/** False when built for production without REACT_APP_API_URL (Vercel will call same-origin /api and login will fail). */
+export function isApiBaseConfiguredForProduction() {
+  if (process.env.NODE_ENV !== "production") return true;
+  return Boolean(normalizeBase(process.env.REACT_APP_API_URL));
+}

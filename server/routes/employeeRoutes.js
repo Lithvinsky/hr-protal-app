@@ -1,6 +1,8 @@
 import express from "express";
 import {
   getEmployees,
+  getEmployeeById,
+  loginEmployee,
   addEmployee,
   updateEmployee,
   deleteEmployee,
@@ -9,6 +11,8 @@ import {
 const router = express.Router();
 
 router.get("/", getEmployees);
+router.post("/login", loginEmployee);
+router.get("/:id", getEmployeeById);
 router.post("/", addEmployee);
 router.put("/:id", updateEmployee);
 router.patch("/:id", updateEmployee);

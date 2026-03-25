@@ -38,10 +38,19 @@ export function authenticate(username, password, data) {
     return { success: false, message: "Invalid password" };
   }
 
+  const sessionUserId = user.id ?? user._id?.toString();
   sessionStorage.setItem("user", user.name);
-  sessionStorage.setItem("userId", user.id);
+  sessionStorage.setItem("userId", sessionUserId);
   sessionStorage.setItem("userRole", user.role);
   return { success: true, message: "Login successful" };
+}
+
+/** After successful POST /api/employees/login (id, name, role only). */
+export function storeSessionFromLoginPayload(user) {
+  if (!user?.name || !user?.id || !user?.role) return;
+  sessionStorage.setItem("user", user.name);
+  sessionStorage.setItem("userId", String(user.id));
+  sessionStorage.setItem("userRole", user.role);
 }
 
 export function isAuthenticated() {

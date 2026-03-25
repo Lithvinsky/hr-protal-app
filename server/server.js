@@ -18,11 +18,23 @@ const extraOrigins = (process.env.CLIENT_ORIGIN || "")
   .filter(Boolean);
 const allowedOrigins = [...defaultOrigins, ...extraOrigins];
 
+function isVercelHost(hostname) {
+  return hostname === "vercel.app" || hostname.endsWith(".vercel.app");
+}
+
 app.use(
   cors({
     origin(origin, callback) {
       if (!origin) return callback(null, true);
       if (allowedOrigins.includes(origin)) return callback(null, true);
+      try {
+        const { protocol, hostname } = new URL(origin);
+        if (protocol === "https:" && isVercelHost(hostname)) {
+          return callback(null, true);
+        }
+      } catch {
+        // ignore
+      }
       callback(null, false);
     },
   })

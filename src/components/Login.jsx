@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { fetchEmployees } from "../services/http";
+import { loginEmployee } from "../services/http";
+import { isApiBaseConfiguredForProduction } from "../config/api";
 import {
-  authenticate,
   isAuthenticated,
   getCurrentUser,
+  storeSessionFromLoginPayload,
 } from "../services/authService.js";
 
 const Login = () => {
@@ -15,11 +15,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
-
-  const { data, isLoading } = useQuery({
-    queryKey: ["employees", "employees-login"],
-    queryFn: fetchEmployees,
-  });
+  const apiReady = isApiBaseConfiguredForProduction();
 
   useEffect(() => {
     if (isAuthenticated()) {
@@ -30,17 +26,21 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    if (!apiReady) {
+      setError(
+        "This deployment is missing REACT_APP_API_URL. Add it in Vercel → Settings → Environment Variables (your API origin, no trailing slash), then redeploy."
+      );
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Simulate a small delay for better UX
-    await new Promise((resolve) => setTimeout(resolve, 300));
-
-    const result = authenticate(username, password, data);
-    
-    if (result.success) {
-      navigate(`/${getCurrentUser()}/home`);
-    } else {
-      setError(result.message);
+    try {
+      const user = await loginEmployee({ username, password });
+      storeSessionFromLoginPayload(user);
+      navigate(`/${user.name}/home`);
+    } catch (err) {
+      setError(err.message || "Sign in failed");
       setIsSubmitting(false);
     }
   };
@@ -61,6 +61,14 @@ const Login = () => {
             </div>
 
             {/* Error Message */}
+            {!apiReady && (
+              <div className="alert alert-warning small" role="alert">
+                Production build: set <code className="small">REACT_APP_API_URL</code> to your
+                deployed API (e.g. <code className="small">https://your-api.onrender.com</code>) and
+                redeploy.
+              </div>
+            )}
+
             {error && (
               <div className="alert alert-danger d-flex align-items-center" role="alert">
                 <i className="bi bi-exclamation-triangle-fill me-2"></i>
@@ -90,7 +98,7 @@ const Login = () => {
                       setError("");
                     }}
                     required
-                    disabled={isSubmitting || isLoading}
+                    disabled={isSubmitting}
                     style={{ paddingLeft: "0" }}
                   />
                 </div>
@@ -116,14 +124,14 @@ const Login = () => {
                       setError("");
                     }}
                     required
-                    disabled={isSubmitting || isLoading}
+                    disabled={isSubmitting}
                     style={{ paddingLeft: "0", paddingRight: "0" }}
                   />
                   <button
                     type="button"
                     className="btn btn-outline-secondary border-start-0"
                     onClick={() => setShowPassword(!showPassword)}
-                    disabled={isSubmitting || isLoading}
+                    disabled={isSubmitting}
                     style={{ borderLeft: "none" }}
                   >
                     <i className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`}></i>
@@ -134,10 +142,10 @@ const Login = () => {
               <button
                 type="submit"
                 className="btn btn-primary w-100 py-2 fw-semibold"
-                disabled={isSubmitting || isLoading}
+                disabled={isSubmitting}
                 style={{ borderRadius: "8px" }}
               >
-                {isSubmitting || isLoading ? (
+                {isSubmitting ? (
                   <>
                     <span
                       className="spinner-border spinner-border-sm me-2"
@@ -159,7 +167,7 @@ const Login = () => {
             <div className="text-center mt-4">
               <small className="text-muted">
                 <i className="bi bi-shield-check me-1"></i>
-                Secure login with encrypted credentials
+                Use your work email or <span className="text-nowrap">name.surname</span>
               </small>
             </div>
           </div>

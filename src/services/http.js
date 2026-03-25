@@ -5,6 +5,31 @@ export const queryClient = new QueryClient();
 
 const employeesPath = () => apiUrl("/api/employees");
 const employeePath = (id) => apiUrl(`/api/employees/${id}`);
+const loginPath = () => apiUrl("/api/employees/login");
+
+export async function loginEmployee({ username, password }) {
+  const response = await fetch(loginPath(), {
+    method: "POST",
+    headers: { "Content-Type": "application/json; charset=UTF-8" },
+    body: JSON.stringify({ username, password }),
+  });
+
+  let info = {};
+  try {
+    info = await response.json();
+  } catch {
+    /* non-JSON body */
+  }
+
+  if (!response.ok) {
+    const error = new Error(info.message || "Login failed");
+    error.code = response.status;
+    error.info = info;
+    throw error;
+  }
+
+  return info;
+}
 
 export async function fetchEmployees() {
   const response = await fetch(employeesPath());
