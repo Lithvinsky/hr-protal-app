@@ -1,70 +1,101 @@
-# Getting Started with Create React App
+# HR Portal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A small HR web app: employee profiles, holiday requests, admin approval flow, and role-based navigation. **Frontend** is a Create React App; **backend** is Express with MongoDB (Mongoose).
 
-## Available Scripts
+## Stack
 
-In the project directory, you can run:
+| Layer | Tech |
+|--------|------|
+| UI | React 19, React Router 7, Bootstrap 5, TanStack Query |
+| API | Express, Mongoose, JWT, bcrypt, Helmet, rate limiting |
+| Data | MongoDB; demo roster loaded from `server/data/employeesSeed.json` |
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Sign in with **email** or **`firstname.lastname`**
+- JWT session: API calls send `Authorization: Bearer <token>`
+- Employee and **admin** roles (directory, profiles, book holidays, admin holiday queue)
+- Passwords stored as bcrypt hashes; optional `/api/auth` routes for a separate User model
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Local development
 
-### `npm test`
+1. **MongoDB** running and a connection string ready.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Backend** (`server/`):
 
-### `npm run build`
+   ```bash
+   cd server
+   cp .env.example .env
+   # Set MONGO_URI and JWT_SECRET (use a long random string for the secret)
+   npm install
+   npm run seed
+   npm start
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   API defaults to `http://localhost:5000`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Frontend** (repository root):
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   npm install
+   npm start
+   ```
 
-### `npm run eject`
+   Opens `http://localhost:3000`. The CRA **proxy** forwards `/api` to port **5000**, so leave `REACT_APP_API_URL` unset locally.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Environment variables
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**`server/.env`**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+| Variable | Purpose |
+|----------|---------|
+| `MONGO_URI` | MongoDB connection string (required) |
+| `JWT_SECRET` | Secret for signing tokens (required) |
+| `JWT_EXPIRES_IN` | Optional; default `7d` |
+| `PORT` | Optional; default `5000` |
+| `CLIENT_ORIGIN` | Optional; comma-separated frontend origins. `https://*.vercel.app` is allowed automatically. |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**Root `.env` (production builds only)**
 
-## Learn More
+| Variable | Purpose |
+|----------|---------|
+| `REACT_APP_API_URL` | Public API origin **without** trailing slash, e.g. `https://your-api.example.com`. Required for Vercel (or any host where `/api` is not proxied). |
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Scripts
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Command | Where | Description |
+|---------|--------|-------------|
+| `npm start` | root | Dev server for React |
+| `npm run build` | root | Production build → `build/` |
+| `npm start` | `server/` | Runs Express |
+| `npm run seed` | `server/` | Clears employees and loads `server/data/employeesSeed.json` |
 
-### Code Splitting
+## API (overview)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- `POST /api/employees/login` — body: `{ username, password }` → `{ token, id, name, role }` (public)
+- `GET/PATCH /api/employees`, `GET/PATCH /api/employees/:id` — require employee JWT
+- `POST /api/employees`, `DELETE /api/employees/:id` — admin JWT
+- `POST /api/auth/register`, `POST /api/auth/login` — User model (optional; separate from employee login)
 
-### Analyzing the Bundle Size
+`:id` can be a Mongo ObjectId or a legacy seed id (e.g. `a1`, `e1`).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Deployment
 
-### Making a Progressive Web App
+- **Frontend (e.g. Vercel):** set `REACT_APP_API_URL` for Production and Preview, then redeploy. `vercel.json` configures the CRA `build` output and SPA routing.
+- **Backend:** run Node on a long-lived host (Render, Railway, Fly.io, VPS, etc.) with `MONGO_URI`, `JWT_SECRET`, and HTTPS. Point `REACT_APP_API_URL` at that origin.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+After deploy, run `npm run seed` once against the production database if you need demo users (clears existing employees first).
 
-### Advanced Configuration
+## Project layout
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
+server/           Express app, models, routes, middleware, seed script
+server/data/      employeesSeed.json (demo data for npm run seed)
+src/              React app (components, services, config)
+```
 
-### Deployment
+More login tips and role notes: `hr-portal-notes.txt`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## License
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Private / use per your organization.
