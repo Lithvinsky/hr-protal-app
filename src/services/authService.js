@@ -45,16 +45,28 @@ export function authenticate(username, password, data) {
   return { success: true, message: "Login successful" };
 }
 
-/** After successful POST /api/employees/login (id, name, role only). */
+const ACCESS_TOKEN_KEY = "accessToken";
+
+/** After successful POST /api/employees/login (token, id, name, role). */
 export function storeSessionFromLoginPayload(user) {
   if (!user?.name || !user?.id || !user?.role) return;
   sessionStorage.setItem("user", user.name);
   sessionStorage.setItem("userId", String(user.id));
   sessionStorage.setItem("userRole", user.role);
+  if (user.token) {
+    sessionStorage.setItem(ACCESS_TOKEN_KEY, user.token);
+  }
+}
+
+export function getAccessToken() {
+  return sessionStorage.getItem(ACCESS_TOKEN_KEY);
 }
 
 export function isAuthenticated() {
-  return sessionStorage.getItem("user") !== null;
+  return (
+    sessionStorage.getItem("user") !== null &&
+    sessionStorage.getItem(ACCESS_TOKEN_KEY) !== null
+  );
 }
 
 export function getCurrentUserRole() {
@@ -74,4 +86,5 @@ export function logout() {
   sessionStorage.removeItem("userId");
   sessionStorage.removeItem("userRole");
   sessionStorage.removeItem("isAdmin");
+  sessionStorage.removeItem(ACCESS_TOKEN_KEY);
 }

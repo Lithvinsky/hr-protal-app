@@ -1,11 +1,17 @@
 import { QueryClient } from "@tanstack/react-query";
 import { apiUrl } from "../config/api";
+import { getAccessToken } from "./authService.js";
 
 export const queryClient = new QueryClient();
 
 const employeesPath = () => apiUrl("/api/employees");
 const employeePath = (id) => apiUrl(`/api/employees/${id}`);
 const loginPath = () => apiUrl("/api/employees/login");
+
+function authHeaders(base = {}) {
+  const token = getAccessToken();
+  return token ? { ...base, Authorization: `Bearer ${token}` } : base;
+}
 
 export async function loginEmployee({ username, password }) {
   const response = await fetch(loginPath(), {
@@ -32,7 +38,9 @@ export async function loginEmployee({ username, password }) {
 }
 
 export async function fetchEmployees() {
-  const response = await fetch(employeesPath());
+  const response = await fetch(employeesPath(), {
+    headers: authHeaders(),
+  });
 
   if (!response.ok) {
     const error = new Error("An error occurred while fetching the events");
@@ -48,6 +56,7 @@ export async function fetchEmployees() {
 export async function fetchSingleEmployee({ id, signal }) {
   const response = await fetch(employeePath(id), {
     signal,
+    headers: authHeaders(),
   });
 
   if (!response.ok) {
@@ -62,7 +71,9 @@ export async function fetchSingleEmployee({ id, signal }) {
 }
 
 export async function requestNewHoliday({ id, holidays }) {
-  const employeeResponse = await fetch(employeePath(id));
+  const employeeResponse = await fetch(employeePath(id), {
+    headers: authHeaders(),
+  });
 
   if (!employeeResponse.ok) {
     const error = new Error("An error occurred while fetching employee data");
@@ -84,9 +95,9 @@ export async function requestNewHoliday({ id, holidays }) {
     body: JSON.stringify({
       holidays: updatedHolidays,
     }),
-    headers: {
+    headers: authHeaders({
       "Content-Type": "application/json; charset=UTF-8",
-    },
+    }),
   });
 
   if (!response.ok) {
@@ -107,7 +118,9 @@ export async function updateHolidayStatus({
   status,
   declineReason,
 }) {
-  const employeeResponse = await fetch(employeePath(employeeId));
+  const employeeResponse = await fetch(employeePath(employeeId), {
+    headers: authHeaders(),
+  });
 
   if (!employeeResponse.ok) {
     const error = new Error("An error occurred while fetching employee data");
@@ -134,9 +147,9 @@ export async function updateHolidayStatus({
     body: JSON.stringify({
       holidays: holidays,
     }),
-    headers: {
+    headers: authHeaders({
       "Content-Type": "application/json; charset=UTF-8",
-    },
+    }),
   });
 
   if (!response.ok) {
@@ -155,9 +168,9 @@ export async function updateEmployee({ employeeId, employeeData }) {
   const response = await fetch(employeePath(employeeId), {
     method: "PATCH",
     body: JSON.stringify(employeeData),
-    headers: {
+    headers: authHeaders({
       "Content-Type": "application/json; charset=UTF-8",
-    },
+    }),
   });
 
   if (!response.ok) {

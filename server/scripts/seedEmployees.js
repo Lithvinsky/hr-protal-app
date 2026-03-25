@@ -10,6 +10,7 @@ import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import Employee from "../models/Employee.js";
+import { hashPassword } from "../utils/password.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -37,10 +38,13 @@ async function seed() {
   const deleted = await Employee.deleteMany({});
   console.log(`Removed ${deleted.deletedCount} existing employee(s)`);
 
-  const docs = employees.map((emp) => {
-    const { id, ...rest } = emp;
-    return { ...rest, legacyId: String(id) };
-  });
+  const docs = await Promise.all(
+    employees.map(async (emp) => {
+      const { id, password, ...rest } = emp;
+      const hashed = await hashPassword(password);
+      return { ...rest, legacyId: String(id), password: hashed };
+    })
+  );
 
   await Employee.insertMany(docs, { ordered: true });
   console.log(`Inserted ${docs.length} employee(s) from employesData.json`);

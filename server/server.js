@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import helmet from "helmet";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 
@@ -10,6 +11,12 @@ dotenv.config();
 connectDB();
 
 const app = express();
+app.set("trust proxy", 1);
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+  })
+);
 
 const defaultOrigins = ["http://localhost:3000", "http://127.0.0.1:3000"];
 const extraOrigins = (process.env.CLIENT_ORIGIN || "")
