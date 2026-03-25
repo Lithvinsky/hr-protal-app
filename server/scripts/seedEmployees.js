@@ -1,5 +1,5 @@
 /**
- * Loads json/employesData.json into MongoDB (Employee collection).
+ * Loads server/data/employeesSeed.json into MongoDB (Employee collection).
  * Run from server/: npm run seed
  *
  * Clears existing employees first. Requires MONGO_URI in server/.env
@@ -16,7 +16,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 dotenv.config({ path: join(__dirname, "..", ".env") });
 
-const jsonPath = join(__dirname, "..", "..", "json", "employesData.json");
+const jsonPath = join(__dirname, "..", "data", "employeesSeed.json");
 
 async function seed() {
   if (!process.env.MONGO_URI) {
@@ -47,7 +47,7 @@ async function seed() {
   );
 
   await Employee.insertMany(docs, { ordered: true });
-  console.log(`Inserted ${docs.length} employee(s) from employesData.json`);
+  console.log(`Inserted ${docs.length} employee(s) from employeesSeed.json`);
 
   await mongoose.disconnect();
   console.log("Done.");

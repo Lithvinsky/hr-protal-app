@@ -7,6 +7,7 @@ import {
   getCurrentUser,
   storeSessionFromLoginPayload,
 } from "../services/authService.js";
+import HrLogo from "./brand/HrLogo.jsx";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -52,12 +53,11 @@ const Login = () => {
           <div className="card-body p-5">
             {/* Logo/Header */}
             <div className="text-center mb-4">
-              <div className="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                   style={{ width: "80px", height: "80px", fontSize: "2rem" }}>
-                <i className="bi bi-briefcase-fill"></i>
+              <div className="d-inline-flex align-items-center justify-content-center mb-3">
+                <HrLogo size={76} variant="default" />
               </div>
-              <h2 className="card-title mb-2 fw-bold">HR Portal</h2>
-              <p className="text-muted small">Sign in to your account</p>
+              <h2 className="card-title mb-1 fw-bold">HR Portal</h2>
+              <p className="text-muted small mb-0">Sign in to your account</p>
             </div>
 
             {/* Error Message */}

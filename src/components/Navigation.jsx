@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { logout, getCurrentUser } from "../services/authService.js";
+import HrLogo from "./brand/HrLogo.jsx";
 
 const Navigation = () => {
   const username = getCurrentUser();
@@ -21,10 +22,10 @@ const Navigation = () => {
       <div className="container-fluid">
         <NavLink
           to={`/${username}/home`}
-          className="navbar-brand fw-bold text-white d-flex align-items-center"
+          className="navbar-brand fw-bold text-white d-flex align-items-center gap-2"
         >
-          <i className="bi bi-briefcase-fill me-2"></i>
-          HR Portal
+          <HrLogo size={34} variant="onPrimary" />
+          <span>HR Portal</span>
         </NavLink>
         <button
           className="navbar-toggler"

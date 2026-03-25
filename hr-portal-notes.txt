@@ -22,10 +22,9 @@ HOW TO ACCESS THE APPLICATION
 ================================================================================
 
 1. START THE APPLICATION:
-   - Navigate to the project directory
-   - Run: npm start
-   - Open browser to: http://localhost:3000
-   - Make sure the backend JSON server is running on port 3000
+   - Configure server/.env (MONGO_URI, JWT_SECRET)
+   - From server/: npm run seed (loads server/data/employeesSeed.json), then npm start
+   - From project root: npm start (frontend on http://localhost:3000, proxies API to :5000)
 
 2. LOGIN PAGE:
    - The application starts at the login page
@@ -75,8 +74,8 @@ Email:    max.schwarz@example.com
 Username: max.schwarz
 Password: qwerty123
 
-Note: All users in the system use password "qwerty123" by default.
-You can find more user accounts in: json/employesData.json
+Note: All seeded users use password "qwerty123" by default (hashed in MongoDB after seed).
+See server/data/employeesSeed.json for the full demo roster.
 
 USER FEATURES:
 --------------
@@ -107,14 +106,15 @@ FRONTEND:
 - Requires: Node.js and npm
 
 BACKEND:
-- JSON Server (for demo purposes)
-- API endpoint: http://localhost:3000/employees
-- Data stored in: json/employesData.json
+- Node.js + Express + MongoDB (Mongoose)
+- API: http://localhost:5000 (e.g. /api/employees, /api/employees/login)
+- Demo data: server/data/employeesSeed.json (loaded via npm run seed in server/)
 
 INSTALLATION:
-1. npm install (to install dependencies)
-2. npm start (to run frontend)
-3. json-server --watch json/employesData.json --port 3000 (to run backend)
+1. npm install (root) and npm install (server/)
+2. server/.env with MONGO_URI and JWT_SECRET; then server/: npm run seed
+3. server/: npm start
+4. Root: npm start (frontend)
 
 ================================================================================
 QUICK LOGIN TIPS
@@ -150,8 +150,8 @@ USER ROLE:
 NOTES
 ================================================================================
 
-- The application uses sessionStorage for authentication (clears on browser close)
-- All employee data is stored in JSON format (json/employesData.json)
+- Authentication uses sessionStorage plus JWT (Bearer token) for API calls
+- Employee data lives in MongoDB; seed copy is server/data/employeesSeed.json
 - Holiday requests can have status: "requested", "accepted", or "declined"
 - Default holiday days: 28 per year
 - Available days = Total days - Used days (only accepted holidays count)

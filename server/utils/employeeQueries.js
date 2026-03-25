@@ -11,7 +11,7 @@ function isMongoObjectIdString(id) {
 }
 
 /**
- * Resolve :id from routes — Mongo ObjectId or legacy id from json/employesData.json (e.g. a1, e1).
+ * Resolve :id from routes — Mongo ObjectId or legacy id from seed data (e.g. a1, e1).
  */
 export async function findEmployeeByRouteId(id) {
   if (!id) return null;
