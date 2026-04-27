@@ -1,13 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchEmployees } from "../services/http.js";
 import { Link } from "react-router-dom";
-import { getCurrentUser } from "../services/authService";
+import { getCurrentUser, getCurrentUserRole } from "../services/authService";
 import Error from "../pages/Error";
 import Avatar from "./UI/Avatar";
 import StatusBadge from "./UI/StatusBadge";
 
 function Profiles() {
   const username = getCurrentUser();
+  const userRole = getCurrentUserRole();
+  const isAdmin = userRole === "admin";
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["employees"],
     queryFn: fetchEmployees,
@@ -85,7 +87,19 @@ function Profiles() {
     );
   }
 
-  return <div>{content}</div>;
+  return (
+    <div>
+      {isAdmin && (
+        <div className="d-flex justify-content-end mt-3">
+          <Link to={`/${username}/profiles/new`} className="btn btn-primary">
+            <i className="bi bi-person-plus me-2"></i>
+            Add Profile
+          </Link>
+        </div>
+      )}
+      {content}
+    </div>
+  );
 }
 
 export default Profiles;

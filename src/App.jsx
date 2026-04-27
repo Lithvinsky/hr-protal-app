@@ -13,6 +13,7 @@ import RootLayout from "./pages/Root";
 import Home from "./components/Home";
 import Profiles from "./components/Profiles";
 import Profile from "./components/Profile";
+import AddProfile from "./components/AddProfile";
 import Holidays from "./components/Holidays";
 import BookHoliday from "./components/BookHoliday";
 import AdminHolidays from "./components/AdminHolidays";
@@ -60,6 +61,14 @@ function App() {
           element: (
             <ProtectedRoute>
               <Profiles />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "profiles/new",
+          element: (
+            <ProtectedRoute>
+              <AddProfile />
             </ProtectedRoute>
           ),
         },

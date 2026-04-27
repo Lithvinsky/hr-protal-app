@@ -145,21 +145,10 @@ const Login = () => {
                 disabled={isSubmitting}
                 style={{ borderRadius: "8px" }}
               >
-                {isSubmitting ? (
-                  <>
-                    <span
-                      className="spinner-border spinner-border-sm me-2"
-                      role="status"
-                      aria-hidden="true"
-                    ></span>
-                    Signing in...
-                  </>
-                ) : (
-                  <>
-                    <i className="bi bi-box-arrow-in-right me-2"></i>
-                    Sign In
-                  </>
-                )}
+                <>
+                  <i className="bi bi-box-arrow-in-right me-2"></i>
+                  Sign In
+                </>
               </button>
             </form>
 

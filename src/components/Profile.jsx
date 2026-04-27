@@ -39,6 +39,12 @@ function Profile() {
   const [formData, setFormData] = useState({});
   const [formErrors, setFormErrors] = useState({});
   const [onboardingTasks, setOnboardingTasks] = useState([]);
+  const [passwordForm, setPasswordForm] = useState({
+    newPassword: "",
+    confirmPassword: "",
+  });
+  const [passwordErrors, setPasswordErrors] = useState({});
+  const [passwordSuccess, setPasswordSuccess] = useState("");
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["employees", profileUserId],
@@ -61,6 +67,21 @@ function Profile() {
     },
   });
 
+  const {
+    mutate: updatePasswordMutate,
+    isPending: isChangingPassword,
+    isError: isPasswordUpdateError,
+    error: passwordUpdateError,
+  } = useMutation({
+    mutationFn: updateEmployee,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["employees", profileUserId] });
+      setPasswordForm({ newPassword: "", confirmPassword: "" });
+      setPasswordErrors({});
+      setPasswordSuccess("Password updated successfully.");
+    },
+  });
+
   // Initialize onboarding tasks when data is loaded
   useEffect(() => {
     if (data) {
@@ -78,6 +99,8 @@ function Profile() {
         name: data.name || "",
         surname: data.surname || "",
         email: data.email || "",
+        password: "",
+        confirmPassword: "",
         phone: data.phone || "",
         address: data.address || "",
         age: data.age || "",
@@ -123,6 +146,12 @@ function Profile() {
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       errors.email = "Invalid email format";
     }
+    if (formData.password && formData.password.length < 6) {
+      errors.password = "Password must be at least 6 characters";
+    }
+    if (formData.password && formData.password !== formData.confirmPassword) {
+      errors.confirmPassword = "Passwords do not match";
+    }
     if (formData.age && (isNaN(formData.age) || formData.age < 0)) {
       errors.age = "Age must be a positive number";
     }
@@ -164,6 +193,9 @@ function Profile() {
           : data.onboarding?.completedDate || null,
       },
     };
+    if (formData.password) {
+      updateData.password = formData.password;
+    }
 
     Object.keys(updateData).forEach((key) => {
       if (updateData[key] === undefined) {
@@ -229,6 +261,47 @@ function Profile() {
 
   const onboardingProgress = calculateOnboardingProgress();
   const isOnboardingComplete = onboardingTasks.every((task) => task.completed);
+  const canChangeOwnPassword = isViewingOwnProfile;
+
+  const handlePasswordInputChange = (e) => {
+    const { name, value } = e.target;
+    setPasswordForm((prev) => ({ ...prev, [name]: value }));
+    setPasswordSuccess("");
+    if (passwordErrors[name]) {
+      setPasswordErrors((prev) => {
+        const next = { ...prev };
+        delete next[name];
+        return next;
+      });
+    }
+  };
+
+  const handlePasswordSubmit = (e) => {
+    e.preventDefault();
+    const errors = {};
+
+    if (!passwordForm.newPassword) {
+      errors.newPassword = "New password is required";
+    } else if (passwordForm.newPassword.length < 6) {
+      errors.newPassword = "Password must be at least 6 characters";
+    }
+
+    if (!passwordForm.confirmPassword) {
+      errors.confirmPassword = "Please confirm your password";
+    } else if (passwordForm.confirmPassword !== passwordForm.newPassword) {
+      errors.confirmPassword = "Passwords do not match";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setPasswordErrors(errors);
+      return;
+    }
+
+    updatePasswordMutate({
+      employeeId: profileUserId,
+      employeeData: { password: passwordForm.newPassword },
+    });
+  };
 
   if (isLoading) {
     return (
@@ -296,6 +369,101 @@ function Profile() {
             onTaskToggle={handleTaskToggle}
             completedDate={data.onboarding?.completedDate}
           />
+          {canChangeOwnPassword && (
+            <div className="card shadow mt-4">
+              <div className="card-header bg-primary text-white">
+                <h5 className="mb-0">
+                  <i className="bi bi-key me-2"></i>
+                  Change Password
+                </h5>
+              </div>
+              <div className="card-body p-4">
+                <form onSubmit={handlePasswordSubmit}>
+                  {isPasswordUpdateError && passwordUpdateError && (
+                    <div className="alert alert-danger" role="alert">
+                      <i className="bi bi-exclamation-triangle me-2"></i>
+                      {passwordUpdateError?.info?.message ||
+                        passwordUpdateError?.message ||
+                        "Failed to update password. Please try again."}
+                    </div>
+                  )}
+                  {passwordSuccess && (
+                    <div className="alert alert-success" role="alert">
+                      <i className="bi bi-check-circle me-2"></i>
+                      {passwordSuccess}
+                    </div>
+                  )}
+
+                  <div className="row">
+                    <div className="col-md-6 mb-3">
+                      <label htmlFor="newPassword" className="form-label">
+                        <strong>New Password</strong>
+                      </label>
+                      <input
+                        type="password"
+                        id="newPassword"
+                        name="newPassword"
+                        className={`form-control ${
+                          passwordErrors.newPassword ? "is-invalid" : ""
+                        }`}
+                        value={passwordForm.newPassword}
+                        onChange={handlePasswordInputChange}
+                      />
+                      {passwordErrors.newPassword && (
+                        <div className="invalid-feedback">
+                          {passwordErrors.newPassword}
+                        </div>
+                      )}
+                    </div>
+                    <div className="col-md-6 mb-3">
+                      <label htmlFor="confirmPasswordSelf" className="form-label">
+                        <strong>Confirm New Password</strong>
+                      </label>
+                      <input
+                        type="password"
+                        id="confirmPasswordSelf"
+                        name="confirmPassword"
+                        className={`form-control ${
+                          passwordErrors.confirmPassword ? "is-invalid" : ""
+                        }`}
+                        value={passwordForm.confirmPassword}
+                        onChange={handlePasswordInputChange}
+                      />
+                      {passwordErrors.confirmPassword && (
+                        <div className="invalid-feedback">
+                          {passwordErrors.confirmPassword}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="d-flex justify-content-end">
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      disabled={isChangingPassword}
+                    >
+                      {isChangingPassword ? (
+                        <>
+                          <span
+                            className="spinner-border spinner-border-sm me-2"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                          Updating...
+                        </>
+                      ) : (
+                        <>
+                          <i className="bi bi-shield-lock me-2"></i>
+                          Update Password
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
         </>
       )}
     </div>

@@ -86,6 +86,40 @@ function ProfileEditForm({
               )}
             </div>
             <div className="col-md-6 mb-3">
+              <label htmlFor="password" className="form-label">
+                <strong>New Password</strong>
+              </label>
+              <input
+                type="password"
+                className={`form-control ${formErrors.password ? "is-invalid" : ""}`}
+                id="password"
+                name="password"
+                value={formData.password || ""}
+                onChange={onInputChange}
+                placeholder="Leave blank to keep current password"
+              />
+              {formErrors.password && (
+                <div className="invalid-feedback">{formErrors.password}</div>
+              )}
+            </div>
+            <div className="col-md-6 mb-3">
+              <label htmlFor="confirmPassword" className="form-label">
+                <strong>Confirm New Password</strong>
+              </label>
+              <input
+                type="password"
+                className={`form-control ${formErrors.confirmPassword ? "is-invalid" : ""}`}
+                id="confirmPassword"
+                name="confirmPassword"
+                value={formData.confirmPassword || ""}
+                onChange={onInputChange}
+                placeholder="Repeat new password"
+              />
+              {formErrors.confirmPassword && (
+                <div className="invalid-feedback">{formErrors.confirmPassword}</div>
+              )}
+            </div>
+            <div className="col-md-6 mb-3">
               <label htmlFor="phone" className="form-label">
                 <strong>Phone</strong>
               </label>

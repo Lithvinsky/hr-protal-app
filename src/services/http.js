@@ -183,3 +183,23 @@ export async function updateEmployee({ employeeId, employeeData }) {
   const data = await response.json();
   return data;
 }
+
+export async function createEmployee({ employeeData }) {
+  const response = await fetch(employeesPath(), {
+    method: "POST",
+    body: JSON.stringify(employeeData),
+    headers: authHeaders({
+      "Content-Type": "application/json; charset=UTF-8",
+    }),
+  });
+
+  if (!response.ok) {
+    const error = new Error("An error occurred while creating employee data");
+    error.code = response.status;
+    error.info = await response.json();
+    throw error;
+  }
+
+  const data = await response.json();
+  return data;
+}
